@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<context:property-placeholder location="classpath:db.properties" />
+	<context:annotation-config></context:annotation-config>
+	<context:component-scan base-package="com.it.dao"></context:component-scan>
+	<context:component-scan base-package="com.it.entities"></context:component-scan>
+	<context:component-scan base-package="com.it.services.impl"></context:component-scan>
+
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close" p:url="${db.url}"
+		p:username="${db.username}" p:password="${db.password}" p:initialSize="10"
+		p:maxActive="100" p:minIdle="2" p:filters="config"
+		p:connectionProperties="config.decrypt=true;config.decrypt.key=${publicKey}"></bean>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:dataSource-ref="dataSource" p:configLocation="classpath:mybatis-config.xml"></bean>
+	<!-- <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" -->
+	<!-- scope="prototype"> -->
+	<!-- <constructor-arg index="0" ref="sessionFactory"></constructor-arg> -->
+	<!-- </bean> -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="dataSource"></bean>
+	<tx:annotation-driven proxy-target-class="true"
+		transaction-manager="transactionManager" />
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+		p:sqlSessionFactoryBeanName="sqlSessionFactory" p:basePackage="com.it.dao"
+		p:annotationClass="org.springframework.stereotype.Repository"></bean>
+</beans>

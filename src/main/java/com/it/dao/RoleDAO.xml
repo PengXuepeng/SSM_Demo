@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.it.dao.RoleDAO">
+	<insert id="insertRole" parameterType="role" keyProperty="id">
+		insert into t_role
+		(role_name, create_date,note)
+		values
+		(#{roleName},#{createDate},#{note})
+	</insert>
+	<update id="updateRole" parameterType="role">
+		update t_role
+		<set>
+			<if test="roleName != null and roleName != ''">role_name = #{roleName}</if>
+			<if test="note != null and note != ''">name = #{note}</if>
+		</set>
+		where id = #{id}
+	</update>
+	<delete id="deleteRole" parameterType="int">
+		delete from t_user
+		where id
+		= #{id}
+	</delete>
+	<select id="getRole" parameterType="int" resultType="role">
+		select id,
+		role_name as roleName, create_date as createDate, note from
+		t_role
+		where id = #{id}
+	</select>
+	<select id="findRoles" parameterType="String" resultType="role">
+		<bind name="pattern_roleName" value="'%'+roleName+'%'" />
+		select id, role_name as roleName, create_date as createDate, note from
+		t_role
+		where role_name like #{pattern_roleName}
+	</select>
+	<!-- <cache-ref namespace=""/> -->
+</mapper>
