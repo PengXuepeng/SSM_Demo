@@ -5,11 +5,24 @@ import java.util.Date;
 public class User {
 	private Integer id;
 	private String userName;
+	private String age;
 	private Date birthday;
 	private String sex;
 	private String mobile;
 	private String email;
 	private String note;
+	private Address address;
+	public Address getAddress() {
+		return address;
+	}
+	public User(String userName, String age) {
+		super();
+		this.userName = userName;
+		this.age = age;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -25,6 +38,12 @@ public class User {
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	public String getAge() {
+		return age;
+	}
+	public void setAge(String age) {
+		this.age = age;
 	}
 	public Date getBirthday() {
 		return birthday;
@@ -58,9 +77,10 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", birthday="
-				+ birthday + ", sex=" + sex + ", mobile=" + mobile + ", email="
-				+ email + ", note=" + note + "]";
+		return "User [id=" + id + ", userName=" + userName + ", age=" + age
+				+ ", birthday=" + birthday + ", sex=" + sex + ", mobile="
+				+ mobile + ", email=" + email + ", note=" + note + ", address="
+				+ address + "]";
 	}
 	
 }

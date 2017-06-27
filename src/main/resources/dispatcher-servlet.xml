@@ -8,22 +8,23 @@
 	<mvc:annotation-driven></mvc:annotation-driven>
 	<context:component-scan base-package="com.it.controller"></context:component-scan>
 	<context:annotation-config></context:annotation-config>
-	<bean
-		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		<property name="messageConverters">
-			<list>
-				<ref bean="mappingJackson2HttpMessageConverter" />
-			</list>
-		</property>
-	</bean>
+<!-- 	<bean -->
+<!-- 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"> -->
+<!-- 		<property name="messageConverters"> -->
+<!-- 			<list> -->
+<!-- 				<ref bean="mappingJackson2HttpMessageConverter" /> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
 
-	<bean id="mappingJackson2HttpMessageConverter"
-		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-		<property name="supportedMediaTypes">
-			<list>
-				<value>application/json;character=UTF-8</value>
-			</list>
-		</property>
-	</bean>
+<!-- 	<bean id="mappingJackson2HttpMessageConverter" -->
+<!-- 		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"> -->
+<!-- 		<property name="supportedMediaTypes"> -->
+<!-- 			<list> -->
+<!-- 				<value>application/json;character=UTF-8</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/views/" p:suffix=".jsp"></bean>
 
 </beans>
