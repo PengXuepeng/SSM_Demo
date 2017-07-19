@@ -23,6 +23,12 @@ import com.it.entities.User;
 @SessionAttributes(value=("Time"))
 public class SpringMVCTest {
 	private static final String SUCCESS = "success";
+	
+	@RequestMapping("")
+	public String testMethod(@RequestParam("userName") String username){
+		System.out.println(username);
+		return SUCCESS;
+	}
 	@RequestMapping(value="/testPostMethod",method=RequestMethod.POST)
 	public String testPostMethod(){
 		System.out.println("testPostMethod");
@@ -87,7 +93,7 @@ public class SpringMVCTest {
 		System.out.println("testModelAndView");
 		modelAndView.setViewName(viewName);
 		modelAndView.addObject("Time", new Date());
-		modelAndView.addObject("user", new User("Dylan","26"));
+		modelAndView.addObject("user", new User("Dylan",25));
 		return modelAndView;
 	}
 	
@@ -104,6 +110,12 @@ public class SpringMVCTest {
 //		map.put("names",Arrays.asList("Dylan","Cathy","Haile"));
 		model.addAttribute("names",Arrays.asList("Dylan","Cathy","Haile"));
 		return SUCCESS;
+	}
+	
+	@RequestMapping("/testView")
+	public String testView(){
+		System.out.println("testView");
+		return "helloView";
 	}
 
 }

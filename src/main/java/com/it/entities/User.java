@@ -5,7 +5,14 @@ import java.util.Date;
 public class User {
 	private Integer id;
 	private String userName;
-	private String age;
+	private String password;
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	private Integer age;
 	private Date birthday;
 	private String sex;
 	private String mobile;
@@ -15,7 +22,7 @@ public class User {
 	public Address getAddress() {
 		return address;
 	}
-	public User(String userName, String age) {
+	public User(String userName, Integer age) {
 		super();
 		this.userName = userName;
 		this.age = age;
@@ -39,10 +46,10 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getAge() {
+	public Integer getAge() {
 		return age;
 	}
-	public void setAge(String age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 	public Date getBirthday() {

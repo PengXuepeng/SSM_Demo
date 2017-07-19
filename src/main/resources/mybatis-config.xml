@@ -10,6 +10,7 @@
 	<typeAliases>
 		<typeAlias type="com.it.entities.Role" alias="role" />
 		<typeAlias type="com.it.entities.User" alias="user" />
+		<typeAlias type="com.it.entities.Employee" alias="employee"/>
 	</typeAliases>
 	<mappers>
 	<mapper resource="com/it/dao/RoleDAO.xml"/>

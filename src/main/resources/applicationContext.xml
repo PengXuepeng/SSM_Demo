@@ -6,11 +6,21 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
+<!-- 	<bean -->
+<!-- 		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"> -->
+<!-- 		<property name="messageConverters"> -->
+<!-- 			<list> -->
+<!-- 				<bean -->
+<!-- 					class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter"></bean> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
 	<context:property-placeholder location="classpath:db.properties" />
 	<context:annotation-config></context:annotation-config>
 	<context:component-scan base-package="com.it.dao"></context:component-scan>
 	<context:component-scan base-package="com.it.entities"></context:component-scan>
 	<context:component-scan base-package="com.it.services.impl"></context:component-scan>
+	<context:component-scan base-package="com.it.view"></context:component-scan>
 
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		init-method="init" destroy-method="close" p:url="${db.url}"
@@ -31,4 +41,12 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
 		p:sqlSessionFactoryBeanName="sqlSessionFactory" p:basePackage="com.it.dao"
 		p:annotationClass="org.springframework.stereotype.Repository"></bean>
+
+	<!-- <bean class="org.springframework.context.support.ConversionServiceFactoryBean"> -->
+	<!-- <property name="converters"> -->
+	<!-- <set> -->
+	<!-- <bean ref ></bean> -->
+	<!-- </set> -->
+	<!-- </property> -->
+	<!-- </bean> -->
 </beans>
